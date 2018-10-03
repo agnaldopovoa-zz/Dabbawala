@@ -8,7 +8,7 @@ namespace Persistencia.DAL
 {
     public class EntidadesDAL 
     {
-        public string GetEntityByName(dabbawalaContext _context, string _entidade)
+        public static string GetEntityByName(dabbawalaContext _context, string _entidade)
         {
             if (_entidade.Trim().ToUpper().Equals("ESTADO")) return JsonConvert.SerializeObject(new DALControl<Estado>().Listar());
             if (_entidade.Trim().ToUpper().Equals("MUNICIPIO")) return JsonConvert.SerializeObject(new DALControl<Municipio>().Listar());
