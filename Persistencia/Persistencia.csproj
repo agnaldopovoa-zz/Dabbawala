@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClienteDAL.cs" />
+    <Compile Remove="EnderecoDAL.cs" />
+    <Compile Remove="EntidadesDAL.cs" />
+    <Compile Remove="ExpedicaoDAL.cs" />
+    <Compile Remove="FornecedorDAL.cs" />
+    <Compile Remove="PessoaJuridicaDAL.cs" />
+    <Compile Remove="ProdutoDAL.cs" />
+    <Compile Remove="SolicitacaoTransporteDAL.cs" />
+    <Compile Remove="UnidadeDAL.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTO\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+  </ItemGroup>
+
+</Project>
