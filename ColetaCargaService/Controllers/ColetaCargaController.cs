@@ -26,7 +26,9 @@ namespace ColetaCargaService.Controllers
         [HttpGet]
         public ActionResult<List<Produto>> GetAll()
         {
-            return context.Produto.ToList();
+            ///return DALControl<Produto>().Listar();
+            var p = new ProdutoDAL().Listar();
+            return p.ToList<Produto>();
         }
 
         // GET: dabbawala/ColetaCarga/<entidade>
@@ -50,17 +52,23 @@ namespace ColetaCargaService.Controllers
 
         // POST api/<controller>
         [HttpPost("NovaColeta", Name = "NovaColeta")]
-        public IActionResult criarNovaColeta([FromBody]InformacoesColetaDTO value)
+        public async Task<ActionResult<Cliente>> criarNovaColetaAsync([FromBody]InformacoesColetaDTO value)
         {
             try
             {
-                SolicitacaoTransporteDAL solicitacao = new SolicitacaoTransporteDAL();
-                if (solicitacao.CriarSolicitacaoTransporte(value) != null)
-                {
-                    return Ok();
-                }
+                Cliente cliente = await HttpApiExpedicao.GetUsers();
+                if (cliente == null)
+                    return BadRequest();
 
-                return BadRequest();
+                return cliente;
+
+                //SolicitacaoTransporteDAL solicitacao = new SolicitacaoTransporteDAL();
+                //if (solicitacao.CriarSolicitacaoTransporte(value) != null)
+                //{
+                //    return Ok();
+                //}
+
+                //return BadRequest();
             }
             catch (Exception ex)
             {

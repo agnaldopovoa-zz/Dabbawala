@@ -40,6 +40,27 @@ namespace ExpedicaoService.Controllers
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
             return response;
         }
+
+
+        // GET: dabbawala/Expedicao/
+        [HttpGet("GetExpedicao/{id}", Name = "GetExpedicao")]
+        public ActionResult<Cliente> GetExpedicao(long id)
+        {
+            try
+            {
+                Cliente expedicao = new ClienteDAL().Obter(id);
+
+                if (expedicao == null)
+                    return NotFound("Não foi encontrada expedição com o ID informado [" + id.ToString() + "]");
+
+                return expedicao;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         //[Produces("text/html")]
         //public string DescribeAPI()
         //{
@@ -51,7 +72,7 @@ namespace ExpedicaoService.Controllers
         //    return response;
         //}
 
-         // POST dabbawala/Expedicao/<value>
+        // POST dabbawala/Expedicao/<value>
         [HttpPost("NovaExpedicao/{id}", Name = "NovaExpedicao")]
         public IActionResult NovaExpedicao(int id)
         {
@@ -77,13 +98,13 @@ namespace ExpedicaoService.Controllers
             }
         }
 
-        // PUT api/<controller>/5
+        // PUT dabbawala/Expedicao/<id>
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/<controller>/id
+        // DELETE dabbawala/Expedicao/<id>
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

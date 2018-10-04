@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\APIClient\APIClient.csproj" />
     <ProjectReference Include="..\Persistencia\Persistencia.csproj" />
   </ItemGroup>
 

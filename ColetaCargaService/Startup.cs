@@ -17,6 +17,11 @@ namespace ColetaCarga
 {
     public class Startup
     {
+        private class Services {
+            public string servidor;
+            public string porta;
+        }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,8 +32,9 @@ namespace ColetaCarga
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=dabbawala;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True";
-            services.AddDbContext<dabbawalaContext>(opt => opt.UseSqlServer(connection));
+            var expedicaoService = Configuration.GetValue<Services>("ExpedicaoServices");
+
+            services.AddDbContext<dabbawalaContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DABBAWALA")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
