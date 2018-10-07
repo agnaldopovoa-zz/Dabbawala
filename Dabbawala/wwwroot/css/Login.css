@@ -1,0 +1,79 @@
+﻿.form-control {
+    width: calc(100% - 26px);
+}
+
+.ol_Form {
+    list-style: none;
+    padding: 25px;
+    margin: 0px;
+}
+
+    .ol_Form li, .ol_Form ul li {
+        padding: 0;
+        background-image: none;
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+.wrapperLogin {
+    text-align: center;
+    width: 450px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid gainsboro;
+    padding-bottom: 35px;
+    padding-top: 15px;
+    border-radius: 10px;
+}
+
+.k-input {
+    height: 46px !important;
+}
+
+.k-select {
+    height: 46px !important;
+}
+
+.button-line {
+    text-align: center;
+    padding-right: 23px;
+    padding-left: 23px;
+}
+
+    .button-line .btn-lg {
+        width: 100%;
+    }
+
+.NomeSistema {
+    font-weight: bold;
+    font-size: 25px;
+    vertical-align: bottom;
+}
+
+@media (max-width:640px) {
+    .wrapperLogin {
+        text-align: center;
+        width: 100%;
+        position: absolute;
+        top: 10%;
+        left: auto;
+        transform: none;
+        border: none !important;
+        padding-bottom: 35px;
+        padding-top: 10px;
+        border-radius: 10px;
+        font-size: 13px;
+    }
+
+    .input-lg {
+        font-size: 13px;
+        height: 35px;
+    }
+
+    .wrapperLogin select {
+        font-size: 13px;
+        height: 35px;
+    }
+}

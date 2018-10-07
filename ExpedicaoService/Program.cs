@@ -18,7 +18,6 @@ namespace ExpedicaoService
             CreateWebHostBuilder(args)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                //.UseConfiguration()
                 .UseStartup<Startup>()
                 .UseUrls("https://localhost:5011")
                 .Build()

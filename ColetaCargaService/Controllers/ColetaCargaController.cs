@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Persistencia.DAL;
-//using Persistencia.DTO;
 using Persistencia.Entities;
+using APIClient;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,12 +23,20 @@ namespace ColetaCargaService.Controllers
         }
 
         // GET: dabbawala/ColetaCarga
-        [HttpGet]
-        public ActionResult<List<Produto>> GetAll()
+        [HttpGet("Listar", Name = "Listar")]
+        public ActionResult<List<InformacoesColetaDTO>> GetAll()
         {
             ///return DALControl<Produto>().Listar();
-            var p = new ProdutoDAL().Listar();
-            return p.ToList<Produto>();
+            var solicitacaoDAL = new SolicitacaoTransporteDAL();
+            return solicitacaoDAL.ObterSolicitacoesTransporte();
+        }
+
+        // GET: dabbawala/ColetaCarga
+        [HttpGet("Obter/{id}", Name = "Obter")]
+        public ActionResult<InformacoesColetaDTO> Get(long id)
+        {
+            var solicitacaoDAL = new SolicitacaoTransporteDAL();
+            return solicitacaoDAL.ObterSolicitacaoTransporte(id);
         }
 
         // GET: dabbawala/ColetaCarga/<entidade>
@@ -38,37 +46,21 @@ namespace ColetaCargaService.Controllers
             return EntidadesDAL.GetEntityByName(context, entidade);
         }
 
-        // GET api/<controller>/id
-        //[HttpGet("{id}", Name ="ObterColeta")]
-        //public ActionResult<Coleta> GetById(long id)
-        //{
-        //    var item = _context.Coletas.Find(id);
-        //    if (item == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return item;
-        //}
-
-        // POST api/<controller>
+        // POST dabbawala/ColetaCarga
         [HttpPost("NovaColeta", Name = "NovaColeta")]
-        public async Task<ActionResult<Cliente>> criarNovaColetaAsync([FromBody]InformacoesColetaDTO value)
+        public IActionResult CriarNovaColeta([FromBody]InformacoesColetaDTO value)
         {
             try
             {
-                Cliente cliente = await HttpApiExpedicao.GetUsers();
-                if (cliente == null)
-                    return BadRequest();
+                SolicitacaoTransporteDAL solicitacaoDAL = new SolicitacaoTransporteDAL();
+                SolicitacaoTransporte solicitacao = solicitacaoDAL.CriarSolicitacaoTransporte(value);
+                if (solicitacao != null)
+                {
+                    HttpApiExpedicao.EnviarExpedicao(solicitacao.IdSolicitacao);
+                    return Ok();
+                }
 
-                return cliente;
-
-                //SolicitacaoTransporteDAL solicitacao = new SolicitacaoTransporteDAL();
-                //if (solicitacao.CriarSolicitacaoTransporte(value) != null)
-                //{
-                //    return Ok();
-                //}
-
-                //return BadRequest();
+                return BadRequest();
             }
             catch (Exception ex)
             {
@@ -76,16 +68,36 @@ namespace ColetaCargaService.Controllers
             }
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        // PUT dabbawala/ColetaCarga/Editar/{id}
+        [HttpPut("Editar/{id}", Name = "Editar")]
+        public IActionResult Put(int id, [FromBody]InformacoesColetaDTO value)
         {
+            try
+            {
+                SolicitacaoTransporteDAL solicitacao = new SolicitacaoTransporteDAL();
+                solicitacao.EditarSolicitacaoTransporte(value);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // DELETE api/<controller>/id
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        // DELETE dabbawala/ColetaCarga/Remover/{id}
+        [HttpDelete("Remover/{id}", Name = "Remover")]
+        public IActionResult Delete(int id)
         {
+            try
+            {
+                SolicitacaoTransporteDAL solicitacao = new SolicitacaoTransporteDAL();
+                solicitacao.RemoverSolicitacaoTransporte(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

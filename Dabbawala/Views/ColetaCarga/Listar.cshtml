@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Dabbawala.Models.SolicitacaoTransporteResponse>
+
+@{
+    ViewData["Title"] = "Coleta Carga";
+}
+
+<h2>Solicitações de Transporte</h2>
+
+<p>
+    @Html.ActionLink("Nova", "Criar")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CNPJCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalColeta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CNPJDestinatario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocalEntrega)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CNPJTransportador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Observacoes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNPJCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocalColeta.Logradouro),
+                @Html.DisplayFor(modelItem => item.LocalColeta.Numero)
+                @Html.DisplayFor(modelItem => item.LocalColeta.Bairro)
+                @Html.DisplayFor(modelItem => item.LocalColeta.Municipio)
+                @Html.DisplayFor(modelItem => item.LocalColeta.UF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNPJDestinatario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocalEntrega.Logradouro),
+                @Html.DisplayFor(modelItem => item.LocalEntrega.Numero)
+                @Html.DisplayFor(modelItem => item.LocalEntrega.Bairro)
+                @Html.DisplayFor(modelItem => item.LocalEntrega.Municipio)
+                @Html.DisplayFor(modelItem => item.LocalEntrega.UF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNPJTransportador)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observacoes)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", item) |
+                @* @Html.ActionLink("Items", "Details") | *@
+                @Html.ActionLink("Remover", "Remover", item)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

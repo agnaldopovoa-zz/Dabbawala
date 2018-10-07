@@ -1,0 +1,122 @@
+﻿@model Dabbawala.Models.SolicitacaoTransporteResponse
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2>Editar</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="ColetaCarga" asp-action="ExecutarEdicao" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" class="form-control" />
+            <span asp-validation-for="ID" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="CNPJCliente" class="control-label"></label>
+                <input asp-for="CNPJCliente" class="form-control" />
+                <span asp-validation-for="CNPJCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <td width="100px">
+                            <label asp-for="LocalColeta.Logradouro" class="control-label"></label>
+                            <input asp-for="LocalColeta.Logradouro" class="form-control" />
+                            <span asp-validation-for="LocalColeta.Logradouro" class="text-danger"></span>
+                        </td>
+                        <td width="20px">&nbsp;</td>
+                        <td width="20px">
+                            <label asp-for="LocalColeta.Numero" class="control-label"></label>
+                            <input asp-for="LocalColeta.Numero" class="form-control" />
+                            <span asp-validation-for="LocalColeta.Numero" class="text-danger"></span>
+                        </td>
+                        <td width="20px">&nbsp;</td>
+                        <td width="60px">
+                            <label asp-for="LocalColeta.Bairro" class="control-label"></label>
+                            <input asp-for="LocalColeta.Bairro" class="form-control" />
+                            <span asp-validation-for="LocalColeta.Bairro" class="text-danger"></span>
+                        </td>
+                        <td width="20px">&nbsp;</td>
+                        <td width="60px">
+                            <label asp-for="LocalColeta.Municipio" class="control-label"></label>
+                            <input asp-for="LocalColeta.Municipio" class="form-control" />
+                            <span asp-validation-for="LocalColeta.Municipio" class="text-danger"></span>
+                        </td>
+                        <td width="20px">&nbsp;</td>
+                        <td width="20px">
+                            <label asp-for="LocalColeta.UF" class="control-label"></label>
+                            <input asp-for="LocalColeta.UF" class="form-control" />
+                            <span asp-validation-for="LocalColeta.UF" class="text-danger"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
+                <label asp-for="CNPJDestinatario" class="control-label"></label>
+                <input asp-for="CNPJDestinatario" class="form-control" />
+                <span asp-validation-for="CNPJDestinatario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <table>
+                    <tr>
+                        <td width="100px">
+                            <label asp-for="LocalEntrega.Logradouro" class="control-label"></label>
+                            <input asp-for="LocalEntrega.Logradouro" class="form-control" />
+                            <span asp-validation-for="LocalEntrega.Logradouro" class="text-danger"></span>
+                        </td>
+                        <td width="20px">&nbsp;</td>
+                        <td width="20px">
+                            <label asp-for="LocalEntrega.Numero" class="control-label"></label>
+                            <input asp-for="LocalEntrega.Numero" class="form-control" />
+                            <span asp-validation-for="LocalEntrega.Numero" class="text-danger"></span>
+                        </td>
+                        <td width="20px">&nbsp;</td>
+                        <td width="60px">
+                            <label asp-for="LocalEntrega.Bairro" class="control-label"></label>
+                            <input asp-for="LocalEntrega.Bairro" class="form-control" />
+                            <span asp-validation-for="LocalEntrega.Bairro" class="text-danger"></span>
+                        </td>
+                        <td width="20px">&nbsp;</td>
+                        <td width="60px">
+                            <label asp-for="LocalEntrega.Municipio" class="control-label"></label>
+                            <input asp-for="LocalEntrega.Municipio" class="form-control" />
+                            <span asp-validation-for="LocalEntrega.Municipio" class="text-danger"></span>
+                        </td>
+                        <td width="20px">&nbsp;</td>
+                        <td width="20px">
+                            <label asp-for="LocalEntrega.UF" class="control-label"></label>
+                            <input asp-for="LocalEntrega.UF" class="form-control" />
+                            <span asp-validation-for="LocalEntrega.UF" class="text-danger"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
+                <label asp-for="CNPJTransportador" class="control-label"></label>
+                <input asp-for="CNPJTransportador" class="form-control" />
+                <span asp-validation-for="CNPJTransportador" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observacoes" class="control-label"></label>
+                <input asp-for="Observacoes" class="form-control" />
+                <span asp-validation-for="Observacoes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @foreach (var item in Model.Itens)
+                {
+                    @Html.Partial("_Itens", item);
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Listar">Voltar a lista</a>
+</div>
+

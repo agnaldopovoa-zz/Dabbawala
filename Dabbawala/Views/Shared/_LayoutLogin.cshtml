@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+    </style>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/Login.css" />
+        <link rel="stylesheet" href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/Login.css" />
+        <link rel="stylesheet" href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css" />
+    </environment>
+</head>
+<body>
+
+
+    @*-------MODAL---------*@
+    <div id="MyModal">
+    </div>
+
+    <div>
+
+        @RenderBody()
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+
+
+</html>

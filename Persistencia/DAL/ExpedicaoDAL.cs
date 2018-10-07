@@ -36,6 +36,7 @@ namespace Persistencia.DAL
                     };
 
                     // Salva e commita as alterações
+                    dbs.Expedicao.Add(expedicao);
                     dbs.SaveChanges();
                     trans.Commit();
 

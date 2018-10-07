@@ -9,12 +9,11 @@ namespace ColetaCargaService
 {
     public class HttpApiExpedicao
     {
-        public static async Task<Cliente> GetUsers()
+        public static async void EnviarExpedicao(long _idSolcitacao)
         {
             var httpApiClient = new HttpClientAPI(new Uri("https://localhost:5011/dabbawala/Expedicao/"));
-            var requestUrl = httpApiClient.CreateRequestUri(string.Format(System.Globalization.CultureInfo.InvariantCulture, "GetExpedicao/2"));
-            var c = await httpApiClient.GetAsync<Cliente>(requestUrl);
-            return c;
+            var requestUrl = httpApiClient.CreateRequestUri(string.Format(System.Globalization.CultureInfo.InvariantCulture, "NovaExpedicao/" + _idSolcitacao.ToString()));
+            var c = await httpApiClient.PostAsync<IAsyncResult>(requestUrl, null);
         }
 
         public static async Task<Cliente> SaveUser(Cliente model)

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Persistencia.DAL
 {
-    public class UnidadeDAL : DALControl<UnidadeDAL>
+    public class UnidadeDAL : DALControl<Unidade>
     {
         public Unidade GetUnidade(string _descricao)
         {

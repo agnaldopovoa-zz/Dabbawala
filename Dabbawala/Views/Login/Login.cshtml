@@ -1,0 +1,29 @@
+﻿@model Dabbawala.Util.AuthRequest
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<form asp-controller="Login" asp-action="EfetuarLogin" method="post">
+    <div class="wrapperLogin">
+        <img src="~/images/logo2.bmp" height="60" alt="Alternate Text" style="margin-left:26px;" />
+        <span class="NomeSistema">Dabbawala</span>
+        <ol class="ol_Form">
+            <li>
+                <label for="txtNome">Usuário</label>
+                @Html.TextBoxFor(model => model.UserName, new { id = "txtNome", maxlength = "200", placeholder = "Usuário", @class = "form-control input-lg" })
+            </li>
+
+            <li>
+                <label for="txtSenha">Senha</label>
+                @Html.PasswordFor(model => model.Password, new { id = "txtSenha", maxlength = "200", placeholder = "Senha", @class = "form-control input-lg" })
+            </li>
+        </ol>
+
+        <div class="button-line">
+            <button type="submit" name="Logar" class="btn btn-primary btn-lg">Login</button>
+        </div>
+    </div>
+</form>
+
